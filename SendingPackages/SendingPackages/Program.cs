@@ -80,8 +80,8 @@ class Program
             if (receivedPackage.Id == lostPackageId)
             {
                 Console.WriteLine($"Receiver: Package {receivedPackage.Id} was lost");
-                lostPackageId = -1; // Mark the lost package as handled
-                continue; // Do not send ACK for the lost package
+                lostPackageId = -1; // flag pentru un pachet pierdut dar handle-uit 
+                continue; // nu transmitem ack pentru un pachet pierdut
             }
 
             Console.WriteLine($"Receiver: Received package {receivedPackage.Id} and sent ACK");
@@ -89,7 +89,7 @@ class Program
 
             if (receivedPackage.Id == lostPackageId && lostPackageId == -1)
             {
-                break; // Exit when the resent lost package has been received
+                break; // se iese atunci cand un pachet pierdut a fost retrimis
             }
         }
     }
