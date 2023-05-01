@@ -16,11 +16,11 @@ class Program
 
     static void Main()
     {
-        Console.Write("Enter the number of packages to send: ");
+        Console.Write("Numărul de pachete ce trebuie trimise: ");
         int numberOfPackages;
         if (!int.TryParse(Console.ReadLine(), out numberOfPackages) || numberOfPackages <= 0)
         {
-            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            Console.WriteLine("Input invalid");
             return;
         }
 
@@ -35,7 +35,7 @@ class Program
         senderThread.Join();
         receiverThread.Join();
 
-        Console.WriteLine("All packages have been sent and acknowledged.");
+        
     }
 
     static void Sender(object obj)
@@ -55,7 +55,7 @@ class Program
                 }
 
                 packageSent.Set();
-                ackReceivedForCurrentPackage = ackReceived.WaitOne(2000); // Wait for 2 seconds for an ACK
+                ackReceivedForCurrentPackage = ackReceived.WaitOne(2000); // se face timeout ul dupa 2 secunde
 
                 if (!ackReceivedForCurrentPackage)
                 {
